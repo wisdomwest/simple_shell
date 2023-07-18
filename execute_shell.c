@@ -40,5 +40,3 @@ void execute_shell(char *command)
 		waitpid(pid, &status, 0);
 	}
 }
-
-
