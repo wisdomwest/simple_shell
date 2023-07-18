@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include "shell.h"
 
-int main()
+/**
+  * main - entry point
+  * Return: void
+  */
+
+int main(void)
 {
 run_shell();
 

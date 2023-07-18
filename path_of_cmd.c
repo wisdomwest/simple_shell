@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+  * path_of_cmd - path to command
+  * @command: command name
+  * Return: path or null
+  */
+
 char *path_of_cmd(char *command) {
     char *path, *path_copy, *path_token, *file_path;
     int command_length, directory_length;

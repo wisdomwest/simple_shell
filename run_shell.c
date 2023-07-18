@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+  * run_shell - main loop of shell
+  * Return: void
+  */
+
 void run_shell()
 {
   char *command = NULL;
