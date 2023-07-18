@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 // Function prototypes
-void run_shell();
+void run_shell(void);
 // ssize_t read_shell(char **lineptr, size_t *n, FILE *stream);
 // void parse_shell();
 // void execute_shell(char *command);
