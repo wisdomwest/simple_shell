@@ -8,7 +8,6 @@
 
 int main(void)
 {
-run_shell();
-
-  return EXIT_SUCCESS;
+	run_shell();
+	return (EXIT_SUCCESS);
 }
