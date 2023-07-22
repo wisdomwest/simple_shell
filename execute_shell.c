@@ -13,6 +13,7 @@ void execute_shell(char *command)
 	int arg_count = 0;
 	int status;
 	char *token = strtok(command, delimiters);
+	pid_t pid = fork();
 
 	while (token != NULL && arg_count < MAX_ARGUMENTS - 1)
 	{
