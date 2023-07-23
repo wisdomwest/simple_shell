@@ -2,18 +2,23 @@
 
 /**
   * run_shell - main loop of shell
+  * @c: count
+  * @argv: arguments from main
   * Return: void
   */
 
-void run_shell(void)
+void run_shell(int c, char **argv)
 {
 	char *command = NULL;
 	size_t bufsize = 0;
 	ssize_t chars_read;
 	int interactive_mode = isatty(STDIN_FILENO);
 
+	signal(SIGINT, handle_signal);
 	while (1)
 	{
+		c++;
+
 		if (interactive_mode)
 		{
 			printf("$ ");
@@ -36,7 +41,7 @@ void run_shell(void)
 			break;
 		}
 
-		execute_shell(command);
+		execute_shell(command, c, argv);
 	}
 
 	free(command);

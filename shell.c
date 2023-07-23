@@ -3,11 +3,15 @@
 
 /**
   * main - entry point
+  * @argc: argument counter
+  * @argv: arguments
   * Return: void
   */
 
-int main(void)
+int main(__attribute__((unused)) int argc, char **argv)
 {
-	run_shell();
+	int c = 0;
+
+	run_shell(c, argv);
 	return (EXIT_SUCCESS);
 }

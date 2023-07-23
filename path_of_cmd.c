@@ -12,7 +12,7 @@ char *path_of_cmd(char *command)
 	int command_length, directory_length;
 	struct stat buffer;
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	if (!path)
 	{
 		printf("Error: PATH environment variable not set.\n");
