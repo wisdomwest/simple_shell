@@ -3,10 +3,12 @@
 /**
   * execute_shell - execute command
   * @command: command
+  * @c: counter
+  * @argv: argument from main
   * Return: void
   */
 
-void execute_shell(char *command)
+void execute_shell(char *command, int c, char **argv)
 {
 	const char *delimiters = " \t\r\n";
 	char *arguments[MAX_ARGUMENTS];
@@ -31,13 +33,30 @@ void execute_shell(char *command)
 
 	if (pid == 0)
 	{
-		execvp(arguments[0], arguments);
-		perror("execvp");
-		exit(EXIT_FAILURE);
+		if (execvp(arguments[0], arguments) == -1)
+		{
+			print_error(arguments[0], c, argv);
+			free(command);
+			exit(127);
+		}
 	}
 
 	else
 	{
 		waitpid(pid, &status, 0);
+	}
+}
+
+/**
+ * handle_signal - handle ^c
+ * @signal: signal
+ * Return: void
+ */
+
+void handle_signal(int signal)
+{
+	if (signal == SIGINT)
+	{
+		_write("\n$ ");
 	}
 }
