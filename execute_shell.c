@@ -15,6 +15,7 @@ void execute_shell(char *command, int c, char **argv)
 	int arg_count = 0;
 	int status;
 	char *token = strtok(command, delimiters);
+	const char *path;
 	pid_t pid = fork();
 
 	while (token != NULL && arg_count < MAX_ARGUMENTS - 1)
@@ -24,6 +25,7 @@ void execute_shell(char *command, int c, char **argv)
 	}
 
 	arguments[arg_count] = NULL;
+	path = path_of_cmd(arguments[0]);
 
 	if (pid == -1)
 	{
@@ -33,7 +35,7 @@ void execute_shell(char *command, int c, char **argv)
 
 	if (pid == 0)
 	{
-		if (execvp(arguments[0], arguments) == -1)
+		if (execve(path, arguments, NULL) == -1)
 		{
 			print_error(arguments[0], c, argv);
 			free(command);
@@ -43,7 +45,8 @@ void execute_shell(char *command, int c, char **argv)
 
 	else
 	{
-		waitpid(pid, &status, 0);
+		if (waitpid(pid, &status, 0) == -1)
+			perror("waitpid");
 	}
 }
 
