@@ -12,7 +12,7 @@
 #include <stdlib.h>
 extern char **environ;
 #define _write(c) (write(STDOUT_FILENO, c, _strlen(c)))
-void run_shell(int c, char **argv, int argc);
+void run_shell(int c, char **argv);
 int _strlen(char *s);
 void execute_shell(char *command, int c, char **argv);
 char *path_of_cmd(char *command);

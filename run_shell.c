@@ -6,8 +6,8 @@
   * @argv: arguments from main
   * Return: void
   */
-void exit_code(char *command, int argc);
-void run_shell(int c, char **argv, int argc)
+
+void run_shell(int c, char **argv)
 {
 	char *command = NULL;
 	size_t bufsize = 0;
@@ -38,25 +38,11 @@ void run_shell(int c, char **argv, int argc)
 
 		if (strcmp(command, "exit") == 0)
 		{
-			exit_code(command, argc);
+			break;
 		}
 
 		execute_shell(command, c, argv);
 	}
 
 	free(command);
-}
-
-/**
- * exit_code - exit command
- * @code: code
- * @command: commands
- * Return: 0
- */
-
-void exit_code(char *command, int argc)
-{
-	int n = argc - 1;
-        free(command);
-        exit(n);
 }
