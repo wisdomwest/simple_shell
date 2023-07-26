@@ -21,6 +21,7 @@ extern node_t *head;
 extern char **environ;
 #define _write(c) (write(STDOUT_FILENO, c, _strlen(c)))
 void run_shell(int c, char **argv);
+void print_env(void);
 int _strlen(char *s);
 int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
