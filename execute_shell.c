@@ -26,7 +26,7 @@ void execute_shell(char *command, int c, char **argv)
 
 	arguments[arg_count] = NULL;
 	path = path_of_cmd(arguments[0]);
-	
+
 	if (pid == -1)
 	{
 		perror("fork");

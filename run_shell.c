@@ -40,6 +40,10 @@ void run_shell(int c, char **argv)
 		{
 			break;
 		}
+		if (strcmp(command, "env") == 0)
+		{
+			print_env();
+		}
 
 		execute_shell(command, c, argv);
 	}
