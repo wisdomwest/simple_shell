@@ -35,7 +35,6 @@ void execute_shell(char *command, int c, char **argv)
 
 	if (pid == 0)
 	{
-		
 		if (execve(path, arguments, NULL) == -1)
 		{
 			print_error(arguments[0], c, argv);
@@ -49,5 +48,18 @@ void execute_shell(char *command, int c, char **argv)
 	{
 		waitpid(pid, &status, 0);
 		free(path);
+	}
+}
+/**
+ * handle_signal - handle ^c
+ * @signal: signal
+ * Return: void
+ */
+
+void handle_signal(int signal)
+{
+	if (signal == SIGINT)
+	{
+		_write("\n$ ");
 	}
 }

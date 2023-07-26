@@ -10,21 +10,11 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <signal.h>
-
-typedef struct node {
-    char *name;
-    char *value;
-    struct node *next;
-} node_t;
-
-extern node_t *head;
 extern char **environ;
 #define _write(c) (write(STDOUT_FILENO, c, _strlen(c)))
 void run_shell(int c, char **argv);
 void print_env(void);
 int _strlen(char *s);
-int _setenv(const char *name, const char *value, int overwrite);
-int _unsetenv(const char *name);
 void execute_shell(char *command, int c, char **argv);
 char *path_of_cmd(char *command);
 char *_getenv(const char *name);
