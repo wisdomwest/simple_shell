@@ -8,10 +8,10 @@
   * Return: void
   */
 
-int main(__attribute__((unused)) int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int c = 0;
 
-	run_shell(c, argv);
+	run_shell(c, argv, argc);
 	return (EXIT_SUCCESS);
 }
