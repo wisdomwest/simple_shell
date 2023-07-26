@@ -15,7 +15,6 @@ char *path_of_cmd(char *command)
 	path = _getenv("PATH");
 	if (!path)
 	{
-		exit();
 		return (NULL);
 	}
 	path_copy = strdup(path);
