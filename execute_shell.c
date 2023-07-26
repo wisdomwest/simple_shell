@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
-  * execute_shell - execute command
-  * @command: command
-  * @c: counter
-  * @argv: argument from main
-  * Return: void
-  */
+ * execute_shell - execute command
+ * @command: command
+ * @c: counter
+ * @argv: argument from main
+ * Return: void
+ */
 
 void execute_shell(char *command, int c, char **argv)
 {
@@ -35,6 +35,7 @@ void execute_shell(char *command, int c, char **argv)
 
 	if (pid == 0)
 	{
+		
 		if (execve(path, arguments, NULL) == -1)
 		{
 			print_error(arguments[0], c, argv);
@@ -46,19 +47,5 @@ void execute_shell(char *command, int c, char **argv)
 	else
 	{
 		waitpid(pid, &status, 0);
-	}
-}
-
-/**
- * handle_signal - handle ^c
- * @signal: signal
- * Return: void
- */
-
-void handle_signal(int signal)
-{
-	if (signal == SIGINT)
-	{
-		_write("\n$ ");
 	}
 }

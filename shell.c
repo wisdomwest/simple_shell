@@ -7,7 +7,8 @@
   * @argv: arguments
   * Return: void
   */
-
+ 
+ node_t *head = NULL; 
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	int c = 0;
