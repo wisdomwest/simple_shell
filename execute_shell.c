@@ -13,8 +13,8 @@ void execute_shell(char *command, int c, char **argv)
 	const char *delimiters = " \t\r\n";
 	char *arguments[MAX_ARGUMENTS];
 	int arg_count = 0;
-	const char *path;
 	int status;
+	char *path;
 	char *token = strtok(command, delimiters);
 	pid_t pid = fork();
 
@@ -26,7 +26,7 @@ void execute_shell(char *command, int c, char **argv)
 
 	arguments[arg_count] = NULL;
 	path = path_of_cmd(arguments[0]);
-
+	
 	if (pid == -1)
 	{
 		perror("fork");
@@ -39,6 +39,7 @@ void execute_shell(char *command, int c, char **argv)
 		{
 			print_error(arguments[0], c, argv);
 			free(command);
+			free(path);
 			exit(127);
 		}
 	}
@@ -46,6 +47,7 @@ void execute_shell(char *command, int c, char **argv)
 	else
 	{
 		waitpid(pid, &status, 0);
+		free(path);
 	}
 }
 

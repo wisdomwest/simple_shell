@@ -1,28 +1,13 @@
 #include "shell.h"
 
 /**
-  * run_exit - exits
-  * @command: command
-  * @argc: argument counter
-  * Return: void
-  */
-
-void run_exit(char *command, int argc)
-{
-	int n = argc - 1;
-	
-	free(command);
-	exit(n);
-}
-
-/**
   * run_shell - main loop of shell
   * @c: count
   * @argv: arguments from main
   * Return: void
   */
 
-void run_shell(int c, char **argv, int argc)
+void run_shell(int c, char **argv)
 {
 	char *command = NULL;
 	size_t bufsize = 0;
@@ -53,7 +38,7 @@ void run_shell(int c, char **argv, int argc)
 
 		if (strcmp(command, "exit") == 0)
 		{
-			run_exit(command, argc);
+			break;
 		}
 
 		execute_shell(command, c, argv);
