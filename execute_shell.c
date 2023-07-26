@@ -13,6 +13,7 @@ void execute_shell(char *command, int c, char **argv)
 	const char *delimiters = " \t\r\n";
 	char *arguments[MAX_ARGUMENTS];
 	int arg_count = 0;
+	const char *path;
 	int status;
 	char *token = strtok(command, delimiters);
 	pid_t pid = fork();
@@ -24,6 +25,7 @@ void execute_shell(char *command, int c, char **argv)
 	}
 
 	arguments[arg_count] = NULL;
+	path = path_of_cmd(arguments[0]);
 
 	if (pid == -1)
 	{
@@ -33,7 +35,7 @@ void execute_shell(char *command, int c, char **argv)
 
 	if (pid == 0)
 	{
-		if (execvp(arguments[0], arguments) == -1)
+		if (execve(path, arguments, NULL) == -1)
 		{
 			print_error(arguments[0], c, argv);
 			free(command);
